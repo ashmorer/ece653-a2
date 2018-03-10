@@ -15,14 +15,21 @@ class PuzzleTests (unittest.TestCase):
     def test_1 (self):
         """SEND + MORE = MONEY"""
         res = solve ('SEND', 'MORE', 'MONEY')
-        self.assertEquals (res, (9567, 1085, 10652))
+        self.assertEquals (int(res[0])+int(res[1]), int(res[2]))
 
     def test_2 (self):
-        pass
+    	res = solve ('PLAY', 'THE', 'GAME')
+        self.assertEquals (int(res[0])+int(res[1]), int(res[2]))
 
     def test_3 (self):
-        pass
+        res = solve ('ICE', 'CUBE', 'COOL')
+        self.assertEquals (int(res[0])+int(res[1]), int(res[2]))
+
     
     def test_4 (self):
-        pass
-        
+        res = solve ('SUN', 'TAN', 'BURN')
+        self.assertEquals (int(res[0])+int(res[1]), int(res[2]))
+
+    def test_5(self):
+    	res = solve('ICE', 'CREAM', 'CONE')
+    	self.assertEquals(res, None)
