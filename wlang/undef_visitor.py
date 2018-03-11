@@ -113,7 +113,7 @@ class UndefVisitor (wlang.ast.AstVisitor):
     def visit_HavocStmt (self, node, *args, **kwargs):
         df = kwargs['df']
         for v in node.vars:
-            df = self.vist (v, df=df)
+            df = self.visit (v, df=df)
         return df
     
     def visit_AssertStmt (self, node, *args, **kwargs):

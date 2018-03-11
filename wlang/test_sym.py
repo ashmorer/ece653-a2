@@ -31,6 +31,56 @@ class TestSym (unittest.TestCase):
         sym = wlang.sym.SymExec ()
         st = wlang.sym.SymState ()
         out = [s for s in sym.run (ast1, st)]
+        print("len(out)=", len(out))
         self.assertEquals (len(out), 1)
+    def test_two (self):
+        prg2 = "assume x > 100; assert x > 15"
+        ast2 = ast.parse_string (prg2)
+        sym = wlang.sym.SymExec ()
+        st = wlang.sym.SymState ()
+        out = [s for s in sym.run (ast2, st)]
+        print("len(out)=", len(out))
+        self.assertEquals (len(out), 1)
+    def test_three (self):
+        prg1 = "assert true; if ((7>=3 and 4>=4) or not true) then x:=10 else print_state"
+        ast1 = ast.parse_string (prg1)
+        sym = wlang.sym.SymExec ()
+        st = wlang.sym.SymState ()
+        out = [s for s in sym.run (ast1, st)]
+        print("len(out)=", len(out))
+        self.assertEquals (len(out), 2)
+    def test_four(self):
+        prg1 = "x:= (1+2)-(2*(6/3)); skip; print_state"
+        ast1 = ast.parse_string (prg1)
+        sym = wlang.sym.SymExec ()
+        st = wlang.sym.SymState ()
+        out = [s for s in sym.run (ast1, st)]
+        print("len(out)=", len(out))
+        self.assertEquals (len(out), 1)
+    def test_five(self):
+        prg1 = "assume x=2; if x>2 then skip; if x=2 then skip else skip; if not (x = 2) then skip else skip"
+        ast1 = ast.parse_string (prg1)
+        sym = wlang.sym.SymExec ()
+        st = wlang.sym.SymState ()
+        out = [s for s in sym.run (ast1, st)]
+        print("len(out)=", len(out))
+        self.assertEquals (len(out), 2*2*2)
+    def test_six (self):
+        prg1 = "assume x<20; while x>0 do x := x-1; print_state; while false do skip"
+        ast1 = ast.parse_string (prg1)
+        sym = wlang.sym.SymExec ()
+        st = wlang.sym.SymState ()
+        out = [s for s in sym.run (ast1, st)]
+        print("len(out)=", len(out))
+        self.assertEquals (len(out), 11*2)
+    def test_seven (self):
+        prg1 = "x:=10; while x=10 do x:=11"
+        ast1 = ast.parse_string (prg1)
+        sym = wlang.sym.SymExec ()
+        st = wlang.sym.SymState ()
+        out = [s for s in sym.run (ast1, st)]
+        print("len(out)=", len(out))
+        self.assertEquals (len(out), 3)
         
+                
         
